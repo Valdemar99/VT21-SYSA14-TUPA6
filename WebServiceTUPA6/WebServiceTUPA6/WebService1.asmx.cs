@@ -27,9 +27,58 @@ namespace WebServiceTUPA6
         }
 
         [WebMethod]
-        public DataTable GetContentFromTable(string tableName )
+        public DataTable GetContentFromTable(string tableName)
         {
-            return dal.GetEmployeeMetaData();
+            return dal.GetContentFromTable(tableName);
         }
+
+        [WebMethod]
+        public DataTable InformationAboutRelatives()
+        {
+            return dal.InformationAboutRelatives();
+        }
+
+        [WebMethod]
+        public DataTable FindSickEMployeesFrom2004()
+        {
+            return dal.FindSickEMployeesFrom2004();
+        }
+
+        [WebMethod]
+        public DataTable FindMostAbsentEmployee()
+        {
+            return dal.FindMostAbsentEmployee();
+        }
+
+        [WebMethod]
+        public DataTable GetAllTables()
+        {
+            return dal.GetAllTables();
+        }
+
+        [WebMethod]
+        public DataTable GetAllKeys()
+        {
+            return dal.GetAllKeys();
+        }
+
+        [WebMethod]
+        public DataTable GetAllIndexes()
+        {
+            return dal.GetAllIndexes();
+        }
+
+        [WebMethod]
+        public DataTable GetAllConstraints()
+        {
+            return dal.GetAllConstraints();
+        }
+
+        [WebMethod]
+        public DataTable GetAllEmployeeColumns()
+        {
+            return dal.GetAllEmployeeColumns();
+        }
+
     }
 }

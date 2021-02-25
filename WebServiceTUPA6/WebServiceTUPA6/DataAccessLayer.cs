@@ -62,14 +62,15 @@ namespace WebServiceTUPA6
             *     Returns           
             ***********/
 
-        public DataTable GetContentFromTable()
+        public DataTable GetContentFromTable(string tableName)
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM[CRONUS Sverige AB$Employee]", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [@tableName]", sqlConnection))
                 {
                     try
                     {
+                        sqlCommand.Parameters.AddWithValue("@tableName", tableName);
                         sqlConnection.Open();
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
