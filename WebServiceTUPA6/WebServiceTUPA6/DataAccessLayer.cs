@@ -359,10 +359,13 @@ namespace WebServiceTUPA6
         }
         public Object[][] HandleDBNullValues(Object[][] data)
         {
+            //Loops through each row in the two-dimensional array:
             foreach (Object[] row in data)
             {
+                //Loops through every cell on this row
                 for (int i = 0; i < row.Length; i++)
                 {
+                    //Checks if it is equal to a DBNull value, and if so, edits it to an empty string.
                     if (row[i] == DBNull.Value)
                     {
                         row[i] = "";
