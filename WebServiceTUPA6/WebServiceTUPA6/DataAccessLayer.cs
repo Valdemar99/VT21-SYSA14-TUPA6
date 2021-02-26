@@ -4,10 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml.Serialization;
+using System.Xml.Schema;
+using System.Xml;
 
 namespace WebServiceTUPA6
 {
-    public class DataAccessLayer
+    public class DataAccessLayer : IXmlSerializable
 
     {
         private SqlConnection sqlConnection;
@@ -23,7 +26,7 @@ namespace WebServiceTUPA6
             *     Returns           SqlDataReader
             ***********/
 
-        public DataTable GetEmployeeMetaData()
+        public Object[][] GetEmployeeMetaData()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -35,8 +38,12 @@ namespace WebServiceTUPA6
                         sqlConnection.Open();
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
+
+
+
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -62,20 +69,21 @@ namespace WebServiceTUPA6
             *     Returns           
             ***********/
 
-        public DataTable GetContentFromTable(string tableName)
+        public Object[][] GetContentFromTable(string tableName)
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [@tableName]", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [" + tableName + "]", sqlConnection))
                 {
                     try
                     {
-                        sqlCommand.Parameters.AddWithValue("@tableName", tableName);
                         sqlConnection.Open();
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        returnArray = this.HandleDBNullValues(returnArray);
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -98,7 +106,7 @@ namespace WebServiceTUPA6
             *    Parameters         string address
             *     Returns           
             ***********/
-        public DataTable InformationAboutRelatives()
+        public Object[][] InformationAboutRelatives()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -114,7 +122,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -132,11 +141,13 @@ namespace WebServiceTUPA6
             }
         }
 
-        public DataTable FindSickEMployeesFrom2004()
+        public Object[][] FindSickEmployeesFrom2004()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT DISTINCT emp.[No_], emp.[First Name], emp.[Last Name], emp.[Job Title], emp.[Address], emp.[Phone No_], emp.[E-Mail]  FROM[CRONUS Sverige AB$Employee Absence] ab JOIN[CRONUS Sverige AB$Employee] emp ON ab.[Employee No_] = emp.No_ WHERE[Cause of Absence Code] = 'SJUK' AND year(ab.[From Date]) = 2004 ", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT DISTINCT emp.[No_], emp.[First Name], emp.[Last Name], emp.[Job Title], " +
+                    "emp.[Address], emp.[Phone No_], emp.[E-Mail]  FROM[CRONUS Sverige AB$Employee Absence] ab JOIN[CRONUS Sverige AB$Employee] emp " +
+                    "ON ab.[Employee No_] = emp.No_ WHERE[Cause of Absence Code] = 'SJUK' AND year(ab.[From Date]) = 2004 ", sqlConnection))
                 {
                     try
                     {
@@ -144,7 +155,9 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -158,10 +171,9 @@ namespace WebServiceTUPA6
                 }
 
 
-
             }
         }
-        public DataTable FindMostAbsentEmployee()
+        public Object[][] FindMostAbsentEmployee()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -173,7 +185,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -191,11 +204,11 @@ namespace WebServiceTUPA6
             }
         }
 
-        public DataTable GetAllTables()
+        public Object[][] GetAllTables()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT name FROM sys.tables WHERE type = ‘U’ ORDER BY name ASC ", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT TABLE_NAME AS Tables FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' ORDER BY TABLE_NAME ASC ", sqlConnection))
                 {
                     try
                     {
@@ -203,7 +216,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -220,7 +234,7 @@ namespace WebServiceTUPA6
 
             }
         }
-        public DataTable GetAllKeys()
+        public Object[][] GetAllKeys()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -232,7 +246,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -250,7 +265,7 @@ namespace WebServiceTUPA6
             }
         }
 
-        public DataTable GetAllIndexes()
+        public Object[][] GetAllIndexes()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -262,7 +277,9 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        returnArray = this.HandleDBNullValues(returnArray);
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -279,7 +296,7 @@ namespace WebServiceTUPA6
 
             }
         }
-        public DataTable GetAllConstraints()
+        public Object[][] GetAllConstraints()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -291,7 +308,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -309,7 +327,7 @@ namespace WebServiceTUPA6
             }
         }
 
-        public DataTable GetAllEmployeeColumns()
+        public Object[][] GetAllEmployeeColumns()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -321,7 +339,8 @@ namespace WebServiceTUPA6
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         DataTable dataTable = new DataTable();
                         dataTable.Load(dataReader);
-                        return dataTable;
+                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
+                        return returnArray;
                     }
                     catch (SqlException e)
                     {
@@ -337,6 +356,36 @@ namespace WebServiceTUPA6
 
 
             }
+        }
+        public Object[][] HandleDBNullValues(Object[][] data)
+        {
+            foreach (Object[] row in data)
+            {
+                for (int i = 0; i < row.Length; i++)
+                {
+                    if (row[i] == DBNull.Value)
+                    {
+                        row[i] = "";
+                    }
+                }
+            }
+            return data;
+
+        }
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

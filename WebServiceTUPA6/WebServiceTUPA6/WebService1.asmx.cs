@@ -21,61 +21,61 @@ namespace WebServiceTUPA6
         DataAccessLayer dal = new DataAccessLayer();
 
         [WebMethod]
-        public DataTable GetEmployeeMetaData()
+        public Object[][] GetEmployeeMetaData()
         {
             return dal.GetEmployeeMetaData();
         }
 
         [WebMethod]
-        public DataTable GetContentFromTable(string tableName)
+        public Object[][] GetContentFromTable(string tableName)
         {
             return dal.GetContentFromTable(tableName);
         }
 
         [WebMethod]
-        public DataTable InformationAboutRelatives()
+        public Object[][] InformationAboutRelatives()
         {
             return dal.InformationAboutRelatives();
         }
 
         [WebMethod]
-        public DataTable FindSickEMployeesFrom2004()
+        public Object[][] FindSickEmployeesFrom2004()
         {
-            return dal.FindSickEMployeesFrom2004();
+            return dal.FindSickEmployeesFrom2004();
         }
 
         [WebMethod]
-        public DataTable FindMostAbsentEmployee()
+        public Object[][] FindMostAbsentEmployee()
         {
             return dal.FindMostAbsentEmployee();
         }
 
         [WebMethod]
-        public DataTable GetAllTables()
+        public Object[][] GetAllTables()
         {
             return dal.GetAllTables();
         }
 
         [WebMethod]
-        public DataTable GetAllKeys()
+        public Object[][] GetAllKeys()
         {
             return dal.GetAllKeys();
         }
 
         [WebMethod]
-        public DataTable GetAllIndexes()
+        public Object[][] GetAllIndexes()
         {
             return dal.GetAllIndexes();
         }
 
         [WebMethod]
-        public DataTable GetAllConstraints()
+        public Object[][] GetAllConstraints()
         {
             return dal.GetAllConstraints();
         }
 
         [WebMethod]
-        public DataTable GetAllEmployeeColumns()
+        public Object[][] GetAllEmployeeColumns()
         {
             return dal.GetAllEmployeeColumns();
         }
