@@ -21,7 +21,7 @@ namespace WebServiceTUPA6
         DataAccessLayer dal = new DataAccessLayer();
 
         [WebMethod]
-        public Object[][] GetEmployeeMetaData()
+        public List<List<string>> GetEmployeeMetaData()
         {
             return dal.GetEmployeeMetaData();
         }

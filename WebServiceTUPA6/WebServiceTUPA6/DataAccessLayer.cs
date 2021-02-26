@@ -26,7 +26,7 @@ namespace WebServiceTUPA6
             *     Returns           SqlDataReader
             ***********/
 
-        public Object[][] GetEmployeeMetaData()
+        public List<List<string>> GetEmployeeMetaData()
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {
@@ -42,8 +42,20 @@ namespace WebServiceTUPA6
 
 
                         dataTable.Load(dataReader);
-                        Object[][] returnArray = dataTable.AsEnumerable().Select(row => row.ItemArray).ToArray();
-                        return returnArray;
+                        List<Object[]> objectList = dataTable.AsEnumerable().Select(row => row.ItemArray).ToList();
+                        List<List<string>> stringList = new List<List<string>>();
+
+                        foreach(Object[] row in objectList)
+                        {
+                            List<string> rowAsString = new List<string>();
+                            foreach (Object cell in row)
+                            {
+                                rowAsString.Add(cell.ToString());
+                            }
+                            stringList.Add(rowAsString);
+                        }
+
+                        return stringList;
                     }
                     catch (SqlException e)
                     {
