@@ -18,47 +18,52 @@ namespace WindowsClient
         {
             InitializeComponent();
             proxy = new WebService1SoapClient();
-            ShowAllData();
+            labelFeedBack.Text = "";
+            FillTableWithData(dataGridViewMetaData, proxy.GetEmployeeMetaData());
+            FillTableWithData(dataGridViewRelatives, proxy.InformationAboutRelatives());
+            FillTableWithData(dataGridViewSickness, proxy.FindSickEmployeesFrom2004());
+            labelAbsent.Text = "First name of the employee that has been absent the most: " + proxy.FindMostAbsentEmployee().ToString();
+            FillTableWithData(dataGridViewAllTables, proxy.GetAllTables());
+            FillTableWithData(dataGridViewAllKeys, proxy.GetAllKeys());
+            FillTableWithData(dataGridViewIndexes, proxy.GetAllIndexes());
+            FillTableWithData(dataGridViewConstraints, proxy.GetAllConstraints());
+            FillTableWithData(dataGridViewEmpTable, proxy.GetAllEmployeeColumns());
+            this.FillComboBox(proxy.GetNamesOfEmployeeTables());
+           
         }
 
-        public void ShowAllData()
+        public void FillTableWithData(DataGridView dataGridView, List<ArrayOfString> data)
         {
             //Creating DataTable object and list of String arrays.
-            DataTable table = new DataTable();
-            List<ArrayOfString> metaData = proxy.GetEmployeeMetaData();
-            List<string[]> stringArrayList = new List<string[]>();
+            DataTable table = new DataTable();            
 
-            //Convert from List<ArrayOfString> to List<string[]> - move to a separate method.
-            for (int rowCount = 0; rowCount < metaData.Count; rowCount++) //row
-            {
-                string[] row = metaData[rowCount].ToArray<string>();
-                stringArrayList.Add(row);
-            }
+            table = this.ListToDataTable(data);
 
-            table = this.ListToDataTable(stringArrayList, new string[] { "0", "1", "2", "3" });
-
-            dataGridViewMetaData.DataSource = table;
-
-            //Object[] relatives = proxy.InformationAboutRelatives();
-            //dataGridViewRelatives.DataSource = relatives;
+            dataGridView.DataSource = table;
 
         }
 
         //Stackoverflow: CD.. URL: https://stackoverflow.com/questions/1253725/convert-ienumerable-to-datatable
-        public DataTable ListToDataTable(List<string[]> items, string[] columnNames)
+        public DataTable ListToDataTable(List<ArrayOfString> items)
         {
             var tb = new DataTable();
 
-            foreach (var column in columnNames)
+            foreach (string column in items[0])
             {
-                tb.Columns.Add(column);
+                if(tb.Columns.Contains(column)) {
+                    tb.Columns.Add("Relative " + column);
+                }
+                else
+                {
+                    tb.Columns.Add(column);
+                }
             }
 
-            for (int rowCount = 0; rowCount < items.Count; rowCount++) //row
+            for (int rowCount = 1; rowCount < items.Count; rowCount++) //row
             {
-                string[] row = items[rowCount];
-                string[] rowAsString = new string[row.Length];
-                for (int columnCount = 0; columnCount < row.Length; columnCount++) //cell
+                ArrayOfString row = items[rowCount];
+                string[] rowAsString = new string[row.Count];
+                for (int columnCount = 0; columnCount < row.Count; columnCount++) //cell
                 {
                     rowAsString[columnCount] = row[columnCount].ToString();
                 }
@@ -69,9 +74,31 @@ namespace WindowsClient
             return tb;
         }
 
-        private void dataGridViewMetaData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void FillComboBox(ArrayOfString items)
         {
+            foreach (string column in items)
+            {
+                comboBoxTables.Items.Add(column);
+                
+            }
+           
+        }
 
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FillTableWithData(dataGridViewTableContent, proxy.GetContentFromTable(comboBoxTables.SelectedItem.ToString()));
+
+            }
+            catch (NullReferenceException ex)
+            {
+                labelFeedBack.Text = "Please choose a table";
+            }
+            catch (System.Exception)
+            {
+                labelFeedBack.Text = "Please choose a table";
+            }
         }
     }
 }

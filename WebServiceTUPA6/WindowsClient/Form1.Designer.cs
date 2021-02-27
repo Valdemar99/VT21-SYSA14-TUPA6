@@ -70,7 +70,7 @@ namespace WindowsClient
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewAllTables = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelAbsent = new System.Windows.Forms.Label();
             this.dataGridViewSickness = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -81,9 +81,11 @@ namespace WindowsClient
             this.dataGridViewMetaData = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridViewTableContent = new System.Windows.Forms.DataGridView();
             this.comboBoxTables = new System.Windows.Forms.ComboBox();
+            this.labelFeedBack = new System.Windows.Forms.Label();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConstraints)).BeginInit();
@@ -326,6 +328,8 @@ namespace WindowsClient
             // 
             // dataGridViewAllTables
             // 
+            this.dataGridViewAllTables.AllowUserToAddRows = false;
+            this.dataGridViewAllTables.AllowUserToDeleteRows = false;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -360,7 +364,7 @@ namespace WindowsClient
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.labelAbsent);
             this.tabPage3.Controls.Add(this.dataGridViewSickness);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
@@ -371,14 +375,14 @@ namespace WindowsClient
             this.tabPage3.Text = "Sickness/Absent";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // labelAbsent
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(170, 334);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(422, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "First name of the employee that has been absent the most";
+            this.labelAbsent.AutoSize = true;
+            this.labelAbsent.Location = new System.Drawing.Point(170, 334);
+            this.labelAbsent.Name = "labelAbsent";
+            this.labelAbsent.Size = new System.Drawing.Size(422, 20);
+            this.labelAbsent.TabIndex = 5;
+            this.labelAbsent.Text = "First name of the employee that has been absent the most";
             // 
             // dataGridViewSickness
             // 
@@ -533,7 +537,6 @@ namespace WindowsClient
             this.dataGridViewMetaData.RowTemplate.Height = 28;
             this.dataGridViewMetaData.Size = new System.Drawing.Size(781, 354);
             this.dataGridViewMetaData.TabIndex = 0;
-            this.dataGridViewMetaData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMetaData_CellContentClick);
             // 
             // tabControl
             // 
@@ -555,6 +558,8 @@ namespace WindowsClient
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.labelFeedBack);
+            this.tabPage7.Controls.Add(this.buttonSearch);
             this.tabPage7.Controls.Add(this.label9);
             this.tabPage7.Controls.Add(this.dataGridViewTableContent);
             this.tabPage7.Controls.Add(this.comboBoxTables);
@@ -566,10 +571,20 @@ namespace WindowsClient
             this.tabPage7.Text = "Table";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(668, 27);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(100, 29);
+            this.buttonSearch.TabIndex = 3;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(77, 44);
+            this.label9.Location = new System.Drawing.Point(8, 31);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(252, 20);
             this.label9.TabIndex = 2;
@@ -612,10 +627,19 @@ namespace WindowsClient
             // comboBoxTables
             // 
             this.comboBoxTables.FormattingEnabled = true;
-            this.comboBoxTables.Location = new System.Drawing.Point(385, 44);
+            this.comboBoxTables.Location = new System.Drawing.Point(308, 28);
             this.comboBoxTables.Name = "comboBoxTables";
             this.comboBoxTables.Size = new System.Drawing.Size(332, 28);
             this.comboBoxTables.TabIndex = 0;
+            // 
+            // labelFeedBack
+            // 
+            this.labelFeedBack.AutoSize = true;
+            this.labelFeedBack.Location = new System.Drawing.Point(304, 73);
+            this.labelFeedBack.Name = "labelFeedBack";
+            this.labelFeedBack.Size = new System.Drawing.Size(51, 20);
+            this.labelFeedBack.TabIndex = 4;
+            this.labelFeedBack.Text = "label5";
             // 
             // Form1
             // 
@@ -669,7 +693,7 @@ namespace WindowsClient
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridViewAllTables;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelAbsent;
         private System.Windows.Forms.DataGridView dataGridViewSickness;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage2;
@@ -683,6 +707,8 @@ namespace WindowsClient
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridViewTableContent;
         private System.Windows.Forms.ComboBox comboBoxTables;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Label labelFeedBack;
     }
 }
 

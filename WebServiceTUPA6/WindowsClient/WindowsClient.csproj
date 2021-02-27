@@ -75,9 +75,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Connected Services\TUPA6Reference\WebService1.wsdl" />
-    <None Include="Connected Services\TUPA6Reference\WindowsClient.TUPA6Reference.ArrayOfAnyType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\TUPA6Reference\WindowsClient.TUPA6Reference.ArrayOfString.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -106,6 +103,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\TUPA6Reference\WindowsClient.TUPA6Reference.GetEmployeeMetaDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TUPA6Reference\WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\TUPA6Reference\WindowsClient.TUPA6Reference.InformationAboutRelativesResponse.datasource">

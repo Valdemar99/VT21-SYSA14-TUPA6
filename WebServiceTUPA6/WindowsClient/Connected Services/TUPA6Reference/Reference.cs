@@ -20,13 +20,6 @@ namespace WindowsClient.TUPA6Reference {
     public class ArrayOfString : System.Collections.Generic.List<string> {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfAnyType", Namespace="http://tempuri.org/", ItemName="anyType")]
-    [System.SerializableAttribute()]
-    public class ArrayOfAnyType : System.Collections.Generic.List<object> {
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TUPA6Reference.WebService1Soap")]
     public interface WebService1Soap {
@@ -100,6 +93,13 @@ namespace WindowsClient.TUPA6Reference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllEmployeeColumns", ReplyAction="*")]
         System.Threading.Tasks.Task<WindowsClient.TUPA6Reference.GetAllEmployeeColumnsResponse> GetAllEmployeeColumnsAsync(WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetNamesOfEmployeeTablesResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNamesOfEmployeeTables", ReplyAction="*")]
+        WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse GetNamesOfEmployeeTables(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNamesOfEmployeeTables", ReplyAction="*")]
+        System.Threading.Tasks.Task<WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse> GetNamesOfEmployeeTablesAsync(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -221,12 +221,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetContentFromTableResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetContentFromTableResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetContentFromTableResult;
         
         public GetContentFromTableResponseBody() {
         }
         
-        public GetContentFromTableResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetContentFromTableResult) {
+        public GetContentFromTableResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetContentFromTableResult) {
             this.GetContentFromTableResult = GetContentFromTableResult;
         }
     }
@@ -282,12 +282,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class InformationAboutRelativesResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> InformationAboutRelativesResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> InformationAboutRelativesResult;
         
         public InformationAboutRelativesResponseBody() {
         }
         
-        public InformationAboutRelativesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> InformationAboutRelativesResult) {
+        public InformationAboutRelativesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> InformationAboutRelativesResult) {
             this.InformationAboutRelativesResult = InformationAboutRelativesResult;
         }
     }
@@ -343,12 +343,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class FindSickEmployeesFrom2004ResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindSickEmployeesFrom2004Result;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> FindSickEmployeesFrom2004Result;
         
         public FindSickEmployeesFrom2004ResponseBody() {
         }
         
-        public FindSickEmployeesFrom2004ResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindSickEmployeesFrom2004Result) {
+        public FindSickEmployeesFrom2004ResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> FindSickEmployeesFrom2004Result) {
             this.FindSickEmployeesFrom2004Result = FindSickEmployeesFrom2004Result;
         }
     }
@@ -404,12 +404,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class FindMostAbsentEmployeeResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindMostAbsentEmployeeResult;
+        public string FindMostAbsentEmployeeResult;
         
         public FindMostAbsentEmployeeResponseBody() {
         }
         
-        public FindMostAbsentEmployeeResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindMostAbsentEmployeeResult) {
+        public FindMostAbsentEmployeeResponseBody(string FindMostAbsentEmployeeResult) {
             this.FindMostAbsentEmployeeResult = FindMostAbsentEmployeeResult;
         }
     }
@@ -465,12 +465,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetAllTablesResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllTablesResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllTablesResult;
         
         public GetAllTablesResponseBody() {
         }
         
-        public GetAllTablesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllTablesResult) {
+        public GetAllTablesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllTablesResult) {
             this.GetAllTablesResult = GetAllTablesResult;
         }
     }
@@ -526,12 +526,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetAllKeysResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllKeysResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllKeysResult;
         
         public GetAllKeysResponseBody() {
         }
         
-        public GetAllKeysResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllKeysResult) {
+        public GetAllKeysResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllKeysResult) {
             this.GetAllKeysResult = GetAllKeysResult;
         }
     }
@@ -587,12 +587,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetAllIndexesResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllIndexesResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllIndexesResult;
         
         public GetAllIndexesResponseBody() {
         }
         
-        public GetAllIndexesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllIndexesResult) {
+        public GetAllIndexesResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllIndexesResult) {
             this.GetAllIndexesResult = GetAllIndexesResult;
         }
     }
@@ -648,12 +648,12 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetAllConstraintsResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllConstraintsResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllConstraintsResult;
         
         public GetAllConstraintsResponseBody() {
         }
         
-        public GetAllConstraintsResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllConstraintsResult) {
+        public GetAllConstraintsResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllConstraintsResult) {
             this.GetAllConstraintsResult = GetAllConstraintsResult;
         }
     }
@@ -709,13 +709,74 @@ namespace WindowsClient.TUPA6Reference {
     public partial class GetAllEmployeeColumnsResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllEmployeeColumnsResult;
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllEmployeeColumnsResult;
         
         public GetAllEmployeeColumnsResponseBody() {
         }
         
-        public GetAllEmployeeColumnsResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllEmployeeColumnsResult) {
+        public GetAllEmployeeColumnsResponseBody(System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllEmployeeColumnsResult) {
             this.GetAllEmployeeColumnsResult = GetAllEmployeeColumnsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetNamesOfEmployeeTablesRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetNamesOfEmployeeTables", Namespace="http://tempuri.org/", Order=0)]
+        public WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequestBody Body;
+        
+        public GetNamesOfEmployeeTablesRequest() {
+        }
+        
+        public GetNamesOfEmployeeTablesRequest(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetNamesOfEmployeeTablesRequestBody {
+        
+        public GetNamesOfEmployeeTablesRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetNamesOfEmployeeTablesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetNamesOfEmployeeTablesResponse", Namespace="http://tempuri.org/", Order=0)]
+        public WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponseBody Body;
+        
+        public GetNamesOfEmployeeTablesResponse() {
+        }
+        
+        public GetNamesOfEmployeeTablesResponse(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetNamesOfEmployeeTablesResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public WindowsClient.TUPA6Reference.ArrayOfString GetNamesOfEmployeeTablesResult;
+        
+        public GetNamesOfEmployeeTablesResponseBody() {
+        }
+        
+        public GetNamesOfEmployeeTablesResponseBody(WindowsClient.TUPA6Reference.ArrayOfString GetNamesOfEmployeeTablesResult) {
+            this.GetNamesOfEmployeeTablesResult = GetNamesOfEmployeeTablesResult;
         }
     }
     
@@ -774,7 +835,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetContentFromTable(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetContentFromTable(string tableName) {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetContentFromTable(string tableName) {
             WindowsClient.TUPA6Reference.GetContentFromTableRequest inValue = new WindowsClient.TUPA6Reference.GetContentFromTableRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetContentFromTableRequestBody();
             inValue.Body.tableName = tableName;
@@ -799,7 +860,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.InformationAboutRelatives(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> InformationAboutRelatives() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> InformationAboutRelatives() {
             WindowsClient.TUPA6Reference.InformationAboutRelativesRequest inValue = new WindowsClient.TUPA6Reference.InformationAboutRelativesRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.InformationAboutRelativesRequestBody();
             WindowsClient.TUPA6Reference.InformationAboutRelativesResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).InformationAboutRelatives(inValue);
@@ -822,7 +883,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.FindSickEmployeesFrom2004(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindSickEmployeesFrom2004() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> FindSickEmployeesFrom2004() {
             WindowsClient.TUPA6Reference.FindSickEmployeesFrom2004Request inValue = new WindowsClient.TUPA6Reference.FindSickEmployeesFrom2004Request();
             inValue.Body = new WindowsClient.TUPA6Reference.FindSickEmployeesFrom2004RequestBody();
             WindowsClient.TUPA6Reference.FindSickEmployeesFrom2004Response retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).FindSickEmployeesFrom2004(inValue);
@@ -845,7 +906,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.FindMostAbsentEmployee(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> FindMostAbsentEmployee() {
+        public string FindMostAbsentEmployee() {
             WindowsClient.TUPA6Reference.FindMostAbsentEmployeeRequest inValue = new WindowsClient.TUPA6Reference.FindMostAbsentEmployeeRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.FindMostAbsentEmployeeRequestBody();
             WindowsClient.TUPA6Reference.FindMostAbsentEmployeeResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).FindMostAbsentEmployee(inValue);
@@ -868,7 +929,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetAllTables(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllTables() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllTables() {
             WindowsClient.TUPA6Reference.GetAllTablesRequest inValue = new WindowsClient.TUPA6Reference.GetAllTablesRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllTablesRequestBody();
             WindowsClient.TUPA6Reference.GetAllTablesResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllTables(inValue);
@@ -891,7 +952,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetAllKeys(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllKeys() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllKeys() {
             WindowsClient.TUPA6Reference.GetAllKeysRequest inValue = new WindowsClient.TUPA6Reference.GetAllKeysRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllKeysRequestBody();
             WindowsClient.TUPA6Reference.GetAllKeysResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllKeys(inValue);
@@ -914,7 +975,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetAllIndexes(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllIndexes() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllIndexes() {
             WindowsClient.TUPA6Reference.GetAllIndexesRequest inValue = new WindowsClient.TUPA6Reference.GetAllIndexesRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllIndexesRequestBody();
             WindowsClient.TUPA6Reference.GetAllIndexesResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllIndexes(inValue);
@@ -937,7 +998,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetAllConstraints(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllConstraints() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllConstraints() {
             WindowsClient.TUPA6Reference.GetAllConstraintsRequest inValue = new WindowsClient.TUPA6Reference.GetAllConstraintsRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllConstraintsRequestBody();
             WindowsClient.TUPA6Reference.GetAllConstraintsResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllConstraints(inValue);
@@ -960,7 +1021,7 @@ namespace WindowsClient.TUPA6Reference {
             return base.Channel.GetAllEmployeeColumns(request);
         }
         
-        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfAnyType> GetAllEmployeeColumns() {
+        public System.Collections.Generic.List<WindowsClient.TUPA6Reference.ArrayOfString> GetAllEmployeeColumns() {
             WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequest inValue = new WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequestBody();
             WindowsClient.TUPA6Reference.GetAllEmployeeColumnsResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllEmployeeColumns(inValue);
@@ -976,6 +1037,29 @@ namespace WindowsClient.TUPA6Reference {
             WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequest inValue = new WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequest();
             inValue.Body = new WindowsClient.TUPA6Reference.GetAllEmployeeColumnsRequestBody();
             return ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetAllEmployeeColumnsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse WindowsClient.TUPA6Reference.WebService1Soap.GetNamesOfEmployeeTables(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest request) {
+            return base.Channel.GetNamesOfEmployeeTables(request);
+        }
+        
+        public WindowsClient.TUPA6Reference.ArrayOfString GetNamesOfEmployeeTables() {
+            WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest inValue = new WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest();
+            inValue.Body = new WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequestBody();
+            WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse retVal = ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetNamesOfEmployeeTables(inValue);
+            return retVal.Body.GetNamesOfEmployeeTablesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse> WindowsClient.TUPA6Reference.WebService1Soap.GetNamesOfEmployeeTablesAsync(WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest request) {
+            return base.Channel.GetNamesOfEmployeeTablesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesResponse> GetNamesOfEmployeeTablesAsync() {
+            WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest inValue = new WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequest();
+            inValue.Body = new WindowsClient.TUPA6Reference.GetNamesOfEmployeeTablesRequestBody();
+            return ((WindowsClient.TUPA6Reference.WebService1Soap)(this)).GetNamesOfEmployeeTablesAsync(inValue);
         }
     }
 }

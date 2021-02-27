@@ -32,27 +32,17 @@
       <s:element name="GetContentFromTableResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetContentFromTableResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentFromTableResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfArrayOfAnyType">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfAnyType" nillable="true" type="tns:ArrayOfAnyType" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfAnyType">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="InformationAboutRelatives">
         <s:complexType />
       </s:element>
       <s:element name="InformationAboutRelativesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="InformationAboutRelativesResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="InformationAboutRelativesResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -62,7 +52,7 @@
       <s:element name="FindSickEmployeesFrom2004Response">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FindSickEmployeesFrom2004Result" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="FindSickEmployeesFrom2004Result" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -72,7 +62,7 @@
       <s:element name="FindMostAbsentEmployeeResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FindMostAbsentEmployeeResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="FindMostAbsentEmployeeResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -82,7 +72,7 @@
       <s:element name="GetAllTablesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllTablesResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTablesResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -92,7 +82,7 @@
       <s:element name="GetAllKeysResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllKeysResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllKeysResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -102,7 +92,7 @@
       <s:element name="GetAllIndexesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllIndexesResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllIndexesResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -112,7 +102,7 @@
       <s:element name="GetAllConstraintsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllConstraintsResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllConstraintsResult" type="tns:ArrayOfArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -122,7 +112,17 @@
       <s:element name="GetAllEmployeeColumnsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllEmployeeColumnsResult" type="tns:ArrayOfArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllEmployeeColumnsResult" type="tns:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNamesOfEmployeeTables">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNamesOfEmployeeTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNamesOfEmployeeTablesResult" type="tns:ArrayOfString" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -188,6 +188,12 @@
   <wsdl:message name="GetAllEmployeeColumnsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllEmployeeColumnsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetNamesOfEmployeeTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNamesOfEmployeeTables" />
+  </wsdl:message>
+  <wsdl:message name="GetNamesOfEmployeeTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNamesOfEmployeeTablesResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="GetEmployeeMetaData">
       <wsdl:input message="tns:GetEmployeeMetaDataSoapIn" />
@@ -228,6 +234,10 @@
     <wsdl:operation name="GetAllEmployeeColumns">
       <wsdl:input message="tns:GetAllEmployeeColumnsSoapIn" />
       <wsdl:output message="tns:GetAllEmployeeColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNamesOfEmployeeTables">
+      <wsdl:input message="tns:GetNamesOfEmployeeTablesSoapIn" />
+      <wsdl:output message="tns:GetNamesOfEmployeeTablesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -322,6 +332,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetNamesOfEmployeeTables">
+      <soap:operation soapAction="http://tempuri.org/GetNamesOfEmployeeTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -408,6 +427,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllEmployeeColumns">
       <soap12:operation soapAction="http://tempuri.org/GetAllEmployeeColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNamesOfEmployeeTables">
+      <soap12:operation soapAction="http://tempuri.org/GetNamesOfEmployeeTables" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

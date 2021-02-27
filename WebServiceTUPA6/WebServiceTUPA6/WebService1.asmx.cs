@@ -27,58 +27,63 @@ namespace WebServiceTUPA6
         }
 
         [WebMethod]
-        public Object[][] GetContentFromTable(string tableName)
+        public List<List<string>> GetContentFromTable(string tableName)
         {
             return dal.GetContentFromTable(tableName);
         }
 
         [WebMethod]
-        public Object[][] InformationAboutRelatives()
+        public List<List<string>> InformationAboutRelatives()
         {
             return dal.InformationAboutRelatives();
         }
 
         [WebMethod]
-        public Object[][] FindSickEmployeesFrom2004()
+        public List<List<string>> FindSickEmployeesFrom2004()
         {
             return dal.FindSickEmployeesFrom2004();
         }
 
         [WebMethod]
-        public Object[][] FindMostAbsentEmployee()
+        public string FindMostAbsentEmployee()
         {
             return dal.FindMostAbsentEmployee();
         }
 
         [WebMethod]
-        public Object[][] GetAllTables()
+        public List<List<string>> GetAllTables()
         {
             return dal.GetAllTables();
         }
 
         [WebMethod]
-        public Object[][] GetAllKeys()
+        public List<List<string>> GetAllKeys()
         {
             return dal.GetAllKeys();
         }
 
         [WebMethod]
-        public Object[][] GetAllIndexes()
+        public List<List<string>> GetAllIndexes()
         {
             return dal.GetAllIndexes();
         }
 
         [WebMethod]
-        public Object[][] GetAllConstraints()
+        public List<List<string>> GetAllConstraints()
         {
             return dal.GetAllConstraints();
         }
 
         [WebMethod]
-        public Object[][] GetAllEmployeeColumns()
+        public List<List<string>> GetAllEmployeeColumns()
         {
             return dal.GetAllEmployeeColumns();
         }
 
+        [WebMethod]
+        public List<string> GetNamesOfEmployeeTables()
+        {
+            return dal.GetNamesOfEmployeeTables();
+        }
     }
 }
