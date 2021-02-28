@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Protocols;
 using System.Windows.Forms;
 using WindowsClient.TUPA6Reference;
 
@@ -86,18 +87,13 @@ namespace WindowsClient
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            try
+            if(comboBoxTables.SelectedItem == null)
+            {
+                labelFeedBack.Text = "Please choose a table.";
+            }
+            else
             {
                 FillTableWithData(dataGridViewTableContent, proxy.GetContentFromTable(comboBoxTables.SelectedItem.ToString()));
-
-            }
-            catch (NullReferenceException ex)
-            {
-                labelFeedBack.Text = "Please choose a table";
-            }
-            catch (System.Exception)
-            {
-                labelFeedBack.Text = "Please choose a table";
             }
         }
     }
