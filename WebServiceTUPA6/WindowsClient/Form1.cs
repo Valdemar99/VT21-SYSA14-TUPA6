@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Protocols;
@@ -17,20 +18,29 @@ namespace WindowsClient
         private WebService1SoapClient proxy;
         public Form1()
         {
-            InitializeComponent();
-            proxy = new WebService1SoapClient();
-            labelFeedBack.Text = "";
-            FillTableWithData(dataGridViewMetaData, proxy.GetEmployeeMetaData());
-            FillTableWithData(dataGridViewRelatives, proxy.InformationAboutRelatives());
-            FillTableWithData(dataGridViewSickness, proxy.FindSickEmployeesFrom2004());
-            labelAbsent.Text = "First name of the employee that has been absent the most: " + proxy.FindMostAbsentEmployee().ToString();
-            FillTableWithData(dataGridViewAllTables, proxy.GetAllTables());
-            FillTableWithData(dataGridViewAllKeys, proxy.GetAllKeys());
-            FillTableWithData(dataGridViewIndexes, proxy.GetAllIndexes());
-            FillTableWithData(dataGridViewConstraints, proxy.GetAllConstraints());
-            FillTableWithData(dataGridViewEmpTable, proxy.GetAllEmployeeColumns());
-            this.FillComboBox(proxy.GetNamesOfEmployeeTables());
-           
+            try
+            {
+                InitializeComponent();
+                proxy = new WebService1SoapClient();
+                labelFeedBack.Text = "";
+                FillTableWithData(dataGridViewMetaData, proxy.GetEmployeeMetaData());
+                FillTableWithData(dataGridViewRelatives, proxy.InformationAboutRelatives());
+                FillTableWithData(dataGridViewSickness, proxy.FindSickEmployeesFrom2004());
+                labelAbsent.Text = "First name of the employee that has been absent the most: " + proxy.FindMostAbsentEmployee().ToString();
+                FillTableWithData(dataGridViewAllTables, proxy.GetAllTables());
+                FillTableWithData(dataGridViewAllKeys, proxy.GetAllKeys());
+                FillTableWithData(dataGridViewIndexes, proxy.GetAllIndexes());
+                FillTableWithData(dataGridViewConstraints, proxy.GetAllConstraints());
+                FillTableWithData(dataGridViewEmpTable, proxy.GetAllEmployeeColumns());
+                this.FillComboBox(proxy.GetNamesOfEmployeeTables());
+            }
+            catch (EndpointNotFoundException)
+            {
+                labelFeedBack.Text = "Please check your connection and try again.";
+            } catch (SoapException soapEx)
+            {
+                labelFeedBack.Text = soapEx.Message;
+            }
         }
 
         public void FillTableWithData(DataGridView dataGridView, List<ArrayOfString> data)
